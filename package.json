@@ -1,0 +1,44 @@
+{
+  "name": "hibiz-news-desk",
+  "version": "4.0.0",
+  "description": "HIBIZ News Desk - Windows desktop news research application",
+  "main": "electron/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "dist": "electron-builder --win nsis",
+    "build:win": "npm install && electron-rebuild -f -w better-sqlite3 && electron-builder --win nsis"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "better-sqlite3": "^11.8.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.1",
+    "electron": "^35.7.5",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.hibiz.newsdesk",
+    "productName": "HIBIZ News Desk",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "frontend/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": ["nsis", "portable"],
+      "artifactName": "HIBIZ-News-Desk-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
